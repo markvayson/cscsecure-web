@@ -41,7 +41,7 @@ $tools_list = [
         'date'           => $updatedDate,
         'repo_url'       => 'https://github.com/markvayson/CST',
         'download_url'   => $downloadUrl,
-  'icon' => '<img src="../assets/tool-icon.png" class="w-full h-full object-contain" alt="CSCsecure Icon">',
+  'icon' => '<img src="../assets/cscsecure-icon.png" class="w-full h-full object-contain" alt="CSCsecure Icon">',
    'theme'          => [
             'bg'       => 'bg-indigo-600',
             'text'     => 'text-indigo-600',

@@ -124,8 +124,8 @@ http_response_code(200);
 echo "Webhook executed successfully. Updated tools_data.json and saved file as downloads/{$customFilename}.";
 
 // Download icon to local server automatically
-$rawIconUrl = "https://raw.githubusercontent.com/{$repoPath}/master/Comtech%20Tools/Comtech%20Logo.ico";
-$localIconPath = __DIR__ . '/downloads/tool-icon.ico';
+$rawIconUrl = "https://raw.githubusercontent.com/{$repoPath}/master/Comtech%20Tools/cscsecure-icon.png";
+$localIconPath = __DIR__ . '/assets/cscsecure-icon.png';
 
 $chIcon = curl_init($rawIconUrl);
 curl_setopt_array($chIcon, [
