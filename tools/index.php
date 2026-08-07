@@ -2,39 +2,54 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Load local tools metadata
 $dataFile = __DIR__ . '/data/tools_data.json';
 $localData = [];
 if (file_exists($dataFile)) {
-    $localData = json_decode(file_get_contents($dataFile), true);
+    $localData = json_decode(file_get_contents($dataFile), true) ?? [];
 }
 
-// Extract data for CST tool with fallbacks
-$cstData = $localData['markvayson/CST'] ?? [
-    'latest' => 'v4.1.0',
-    'date' => 'Aug 02, 2026',
-    'download_url' => 'downloads/CSCsecure.exe',
-    'versions' => ['v4.1.0' => '#']
+// Extract CST tool data with safe key fallbacks
+$cstData = $localData['markvayson/CST'] ?? [];
+
+$latestVersion   = $cstData['latest'] ?? 'v4.1.0';
+$updatedDate     = $cstData['date'] ?? 'Aug 02, 2026';
+$downloadUrl     = $cstData['download_url'] ?? 'downloads/CSCsecure-v4.1.0.exe';
+$repoDescription = $cstData['description'] ?? $cstData['repo_description'] ?? 'Standalone Windows desktop security utility for IT hardening and compliance with Abu Dhabi Healthcare Information and Cyber Security standards.';
+$versions        = $cstData['versions'] ?? [
+    'v4.1.0' => [
+        'url'   => 'https://github.com/markvayson/CST/releases/tag/v4.1.0',
+        'notes' => 'Added multithreaded fast local disk search and FortiGate CLI Telnet management hardening.'
+    ]
 ];
+
+// Extract latest tag release notes safely
+$latestNotes = '';
+if (!empty($versions) && is_array($versions)) {
+    $firstVersion = reset($versions);
+    if (is_array($firstVersion) && !empty($firstVersion['notes'])) {
+        $latestNotes = $firstVersion['notes'];
+    }
+}
 
 $tools_list = [
     [
-        'name' => 'CSCsecure',
-        'latest_version' => $cstData['latest'],
-        'category' => 'Security Compliance',
-        'description' => 'Standalone Windows desktop security utility for IT hardening and compliance with Abu Dhabi Healthcare Information and Cyber Security standards. Built with PowerShell, C++, and XAML.',
-        'date' => $cstData['date'],
-        'repo_url' => 'https://github.com/markvayson/CST',
-        'download_url' => $cstData['download_url'],
-        'icon' => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>',
-        'theme' => [
-            'bg' => 'bg-indigo-600',
-            'text' => 'text-indigo-600',
+        'name'           => 'CSCsecure',
+        'latest_version' => $latestVersion,
+        'category'       => 'Security Compliance',
+        'description'    => $repoDescription,
+        'latest_notes'   => $latestNotes,
+        'date'           => $updatedDate,
+        'repo_url'       => 'https://github.com/markvayson/CST',
+        'download_url'   => $downloadUrl,
+  'icon' => '<img src="../assets/tool-icon.png" class="w-full h-full object-contain" alt="CSCsecure Icon">',
+   'theme'          => [
+            'bg'       => 'bg-indigo-600',
+            'text'     => 'text-indigo-600',
             'light_bg' => 'bg-indigo-50',
-            'border' => 'border-indigo-100',
-            'shadow' => 'shadow-indigo-500/20'
+            'border'   => 'border-indigo-100',
+            'shadow'   => 'shadow-indigo-500/20'
         ],
-        'versions' => $cstData['versions']
+        'versions'       => $versions
     ]
 ];
 ?>

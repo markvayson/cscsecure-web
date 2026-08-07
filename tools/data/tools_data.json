@@ -1,0 +1,18 @@
+{
+    "markvayson/CST": {
+        "latest": "v4.1.0",
+        "date": "Aug 02, 2026",
+        "download_url": "downloads/CSCsecure-v4.1.0.exe",
+        "description": "A standalone Windows security utility for automated system hardening, network policy enforcement, and endpoint compliance.",
+        "versions": {
+            "v4.1.0": {
+                "url": "https://github.com/markvayson/CST/releases/tag/v4.1.0",
+                "notes": "Added multithreaded fast local disk search and FortiGate CLI Telnet management hardening."
+            },
+            "v4.0.0": {
+                "url": "https://github.com/markvayson/CST/releases/tag/v4.0.0",
+                "notes": "Integrated sidebar UI panel redesign and legacy SSL/TLS control cards."
+            }
+        }
+    }
+}
