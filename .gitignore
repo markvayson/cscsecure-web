@@ -10,3 +10,7 @@ yarn-error.log*
 # OS generated files
 Thumbs.db
 Desktop.ini
+
+
+# Ignore PHP GitHub Cache files
+cache_*.json
