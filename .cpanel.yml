@@ -2,6 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/comtecha/public_html/
+    - /bin/cp -R tools $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
     - /bin/cp header.php $DEPLOYPATH
     - /bin/cp footer.php $DEPLOYPATH
